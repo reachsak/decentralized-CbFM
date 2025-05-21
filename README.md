@@ -6,6 +6,7 @@
 This project explores the development of a **Blockchain-based Decentralized Autonomous Organization (DAO)** for **community-based management of smart buildings**. By promoting decentralized governance and stakeholder engagement, the project aims to enhance transparency, efficiency, and collaboration in facilities management.
 
 The system encourages building occupants and stakeholders to actively contribute to the maintenance, improvement, and sustainability of shared building infrastructure. Using blockchain technology, the DAO ensures transparent, decentralized decision-making and incentivizes participation through fungible and non-fungible tokens.
+
 <img src="/Fig5.jpg" style="float: left; margin-right: 20px; max-width: 200px;">
 
 
