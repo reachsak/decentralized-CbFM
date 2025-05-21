@@ -7,8 +7,7 @@ This project explores the development of a **Blockchain-based Decentralized Auto
 
 The system encourages building occupants and stakeholders to actively contribute to the maintenance, improvement, and sustainability of shared building infrastructure. Using blockchain technology, the DAO ensures transparent, decentralized decision-making and incentivizes participation through fungible and non-fungible tokens.
 
-## Manuscript
-Under preparation...
+<img src="/Fig5.jpg" style="float: left; margin-right: 20px; max-width: 200px;">
 
 
 ## Key Components
