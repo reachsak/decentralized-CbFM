@@ -42,23 +42,22 @@ Through this integrated system, the framework aims to increase stakeholder engag
 
 ## Installation
 
-Coming Soon.
+## 🔧 Installation
 
-## Future Work
+To run the DApp frontend:
 
-This ongoing project is under active development, and a manuscript documenting the framework's details and findings is currently in preparation.
+1. Open your terminal.
+2. Navigate to the `frontend` folder:
+   cd frontend
+   
+Install the required dependencies:
+npm install
 
-### Research Areas
 
-- Decentralized Governance for Smart Buildings
-- Blockchain Technology in Facilities Management
-- Smart Contracts for Stakeholder Collaboration
+Start the development server:
+npm run start
 
-## Contact
 
-For more information, please visit our [GitHub Repository](https://github.com/your-repo-link) or contact the project lead at [your-email@example.com].
+Once started, the application should be available at http://localhost:3000/ (or the port specified in your project settings).
 
----
-
-This project is part of ongoing research at the **Myers-Lawson School of Construction** at Virginia Tech.
 
