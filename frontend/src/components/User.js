@@ -1,6 +1,7 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import * as React from "react";
+import FileUploaddemo from "./FileUploaddemo";
 import ethlogo from "./eth.png";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -196,18 +197,18 @@ export const User = ({
                   >
                     {" "}
                     <Stack spacing={2} direction="row" justifyContent="center">
-                      <AwesomeButton type="linkedin" onPress={sample}>
+                      {/* <AwesomeButton type="linkedin" onPress={sample}>
                         Trade NFT
-                      </AwesomeButton>
+                      </AwesomeButton> */}
                       <AwesomeButton type="linkedin" onPress={sample}>
                         Transfer NFT
                       </AwesomeButton>
                       <AwesomeButton type="linkedin" onPress={sample}>
                         Burn NFT
                       </AwesomeButton>
-                      <AwesomeButton type="linkedin" onPress={sample}>
+                      {/* <AwesomeButton type="linkedin" onPress={sample}>
                         Transfer NFT
-                      </AwesomeButton>
+                      </AwesomeButton> */}
                     </Stack>
                   </Box>
                 </Box>
@@ -251,9 +252,9 @@ export const User = ({
                       <AwesomeButton type="primary" onPress={sample}>
                         Tranfer Token
                       </AwesomeButton>
-                      <AwesomeButton type="danger" onPress={sample}>
+                      {/* <AwesomeButton type="danger" onPress={sample}>
                         Trade Token
-                      </AwesomeButton>
+                      </AwesomeButton> */}
                     </Stack>
                   </Box>
                 </Box>
@@ -334,12 +335,168 @@ export const User = ({
                     alignItems="center" // Center the content vertically
                   >
                     {" "}
-                    <AwesomeButton type="primary" onPress={sample}>
+                    <AwesomeButton
+                      type="primary"
+                      onPress={() => {
+                        setActiveTab(22);
+                      }}
+                    >
                       Submit a proposal
+                    </AwesomeButton>
+                  </Box>
+                  <Box
+                    boxShadow={3}
+                    style={{ color: "black" }}
+                    bgcolor="background.paper"
+                    p={2}
+                    className="retro-box" // Add a class for retro style
+                    maxWidth="fit-content" // Set maximum width to fit the content
+                    margin="auto" // Center the box horizontally
+                    display="flex"
+                    flexDirection="row"
+                    alignItems="center" // Center the content vertically
+                  >
+                    {" "}
+                    <AwesomeButton
+                      type="whatsapp"
+                      onPress={() => {
+                        setActiveTab(23);
+                      }}
+                    >
+                      Vote
                     </AwesomeButton>
                   </Box>
                 </Box>
               </Stack>
+            </div>
+            <div>
+              {activeTab === 22 && (
+                <div style={{ display: "flex" }}>
+                  <Box
+                    boxShadow={3}
+                    bgcolor="background.paper"
+                    p={2}
+                    className="retro-box" // Add a class for retro style
+                    maxWidth="fit-content" // Set maximum width to fit the content
+                    margin="auto" // Center the box horizontally
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center" // Center the content vertically
+                  >
+                    <div>
+                      <h2>Propose a new maintenance request</h2>
+                      <p>
+                        The Dao members and Admins will vote to decide what
+                        happens next
+                      </p>
+
+                      {/* <p> Last proposal: {shortId} </p> */}
+
+                      <div className="prop-card">
+                        <Box
+                          component="form"
+                          sx={{
+                            "& > :not(style)": { m: 1, width: "25ch" },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <TextField
+                            id="outlined-basic"
+                            label="Proposal Description"
+                            variant="outlined"
+                            onChange={handleParamsChange}
+                            defaultValue={params.proposalDescription}
+                            name="proposalDescription"
+                            sx={{
+                              borderRadius: "10px", // Rounded corners
+                              fontFamily: '"Jost", sans-serif',
+                              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Shadow effect
+                              "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                  borderWidth: "2px", // Border width
+                                },
+                              },
+                            }}
+                          />
+                        </Box>
+                      </div>
+                      <div>
+                        {" "}
+                        <Box
+                          boxShadow={3}
+                          bgcolor="background.paper"
+                          p={2}
+                          className="retro-box" // Add a class for retro style
+                          maxWidth="fit-content" // Set maximum width to fit the content
+                          margin="auto" // Center the box horizontally
+                          display="flex"
+                          flexDirection="column"
+                          alignItems="center" // Center the content vertically
+                        >
+                          <FileUploaddemo
+                            account={account}
+                            provider={provider}
+                            contract={contract}
+                            updateOutputText={updateOutputText}
+                          />
+                        </Box>
+                      </div>
+                      <AwesomeButton
+                        type="facebook"
+                        onPress={() => {
+                          createProposal(
+                            signer,
+                            params.proposalDescription,
+                            params.proposalAmount
+                          );
+                          localStorage.setItem(
+                            "proposalDescription",
+                            params.proposalDescription
+                          );
+                          localStorage.setItem(
+                            "proposalAmount",
+                            params.proposalAmount
+                          );
+                        }}
+                      >
+                        Create Proposal
+                      </AwesomeButton>
+                    </div>
+                  </Box>
+                </div>
+              )}
+              {activeTab === 23 && (
+                <div>
+                  <Box
+                    boxShadow={3}
+                    bgcolor="background.paper"
+                    p={2}
+                    className="retro-box" // Add a class for retro style
+                    maxWidth="fit-content" // Set maximum width to fit the content
+                    margin="auto" // Center the box horizontally
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center" // Center the content vertically
+                  >
+                    <div>
+                      <h2>Vote on the maintenance submission</h2>
+                      <p>Submission despcription</p>
+                      <Display
+                        contract={contract}
+                        account={account}
+                        propDesc={proposalDescription}
+                      ></Display>
+
+                      <Box sx={{ minWidth: 275 }}>
+                        <Card variant="outlined">
+                          <VoteProposal lastId={proposal} signer={signer} />
+                        </Card>
+                      </Box>
+                    </div>
+                  </Box>
+                </div>
+              )}
             </div>
           </div>
         </Typography>

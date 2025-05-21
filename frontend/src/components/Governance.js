@@ -275,14 +275,14 @@ export const Governance = ({
                   >
                     AI Proposal Generator
                   </AwesomeButton> */}
-                    <AwesomeButton
+                    {/* <AwesomeButton
                       type="github"
                       onPress={() => {
                         setActiveTab(5);
                       }}
                     >
                       Previous Proposal
-                    </AwesomeButton>
+                    </AwesomeButton> */}
                   </Stack>
                 </Box>
 
@@ -819,22 +819,22 @@ export const Governance = ({
                         alignItems="center" // Center the content vertically
                       >
                         <AwesomeButton
-                          type="secondary"
+                          type="linkedin"
                           style={{ marginBottom: "10px" }}
                           onPress={() => {
                             setActiveTab(2);
                           }}
                         >
-                          Smart lighting system
+                          Amount of Tokens for Successful proposal 📝
                         </AwesomeButton>
                         <AwesomeButton
-                          type="secondary"
+                          type="linkedin"
                           style={{ marginBottom: "10px" }}
                           onPress={() => {
                             setActiveTab(2);
                           }}
                         >
-                          Air Purifier
+                          Amount of Tokens for Voting participation 🙋
                         </AwesomeButton>
                         {/* <AwesomeButton
                         type="secondary"
@@ -845,24 +845,6 @@ export const Governance = ({
                       >
                         Heater
                       </AwesomeButton> */}
-                        <AwesomeButton
-                          type="secondary"
-                          style={{ marginBottom: "10px" }}
-                          onPress={() => {
-                            setActiveTab(2);
-                          }}
-                        >
-                          Smart Fan
-                        </AwesomeButton>
-                        <AwesomeButton
-                          type="secondary"
-                          style={{ marginBottom: "10px" }}
-                          onPress={() => {
-                            setActiveTab(2);
-                          }}
-                        >
-                          Humidifier
-                        </AwesomeButton>
                       </Box>
                     </div>
                   )}
@@ -902,7 +884,7 @@ export const Governance = ({
                                 setActiveTab(14);
                               }}
                             >
-                              Update incentivization rules
+                              Update incentivization parameter
                             </AwesomeButton>
                             <AwesomeButton
                               type="facebook"

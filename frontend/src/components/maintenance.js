@@ -16,7 +16,7 @@ import { VoteProposal } from "./VoteBox";
 import { ExecuteProposal } from "./ExecuteBox";
 import { useGetTotalVoters } from "../web3/GetVotersCount";
 import { useGetProposals } from "../web3/GetProposalCount";
-import FileUpload from "./FileUpload";
+import FileUploaddemo from "./FileUploaddemo";
 import Upload from "./Upload.json";
 import Display from "./Display";
 import NFTComponent from "./mmcc";
@@ -39,6 +39,7 @@ export const Maintenance = ({
   proposal,
   newValue,
   proposalDescription,
+  setProposalDescription,
 }) => {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
@@ -144,8 +145,12 @@ export const Maintenance = ({
   }, [signer]);
 
   const handleParamsChange = (e) => {
-    setParams({ ...params, [e.target.name]: e.target.value });
+    if (e.target.name === "proposalDescription") {
+      setParams({ ...params, [e.target.name]: e.target.value });
+      setProposalDescription(e.target.value); // Update the proposal description state
+    }
   };
+
   const sample = () => {
     // Open the URL specified in the gourl function in a new tab
     console.log("placeholder");
@@ -157,7 +162,7 @@ export const Maintenance = ({
         ? proposalDescription
         : localStorage.getItem("proposalDescription")
     );
-    setPropValue(newValue ? newValue : localStorage.getItem("proposalAmount"));
+    setPropValue(1); // Hardcoded to always be 1
   };
 
   return (
@@ -196,14 +201,14 @@ export const Maintenance = ({
                   >
                     Vote
                   </AwesomeButton>
-                  <AwesomeButton
+                  {/* <AwesomeButton
                     type="twitter"
                     onPress={() => {
                       setActiveTab(4);
                     }}
                   >
-                    AI Prompt Generator
-                  </AwesomeButton>
+                    Upload Image
+                  </AwesomeButton> */}
                 </Stack>
               </Box>
             </div>
@@ -222,12 +227,13 @@ export const Maintenance = ({
                     alignItems="center" // Center the content vertically
                   >
                     <div>
-                      <h2>Propose a new Execution</h2>
+                      <h2>Propose a new maintenance request</h2>
                       <p>
-                        The Dao members will vote to decide what happens next
+                        The Dao members and Admins will vote to decide what
+                        happens next
                       </p>
 
-                      <p> Last proposal: {shortId} </p>
+                      {/* <p> Last proposal: {shortId} </p> */}
 
                       <div className="prop-card">
                         <Box
@@ -246,7 +252,7 @@ export const Maintenance = ({
                             defaultValue={params.proposalDescription}
                             name="proposalDescription"
                             sx={{
-                              borderRadius: "8px", // Rounded corners
+                              borderRadius: "10px", // Rounded corners
                               fontFamily: '"Jost", sans-serif',
                               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Shadow effect
                               "& .MuiOutlinedInput-root": {
@@ -256,23 +262,26 @@ export const Maintenance = ({
                               },
                             }}
                           />
-                          <TextField
-                            id="outlined-basic"
-                            label="Proposal Value"
-                            variant="outlined"
-                            onChange={handleParamsChange}
-                            defaultValue={params.proposalAmount}
-                            name="proposalAmount"
-                            sx={{
-                              borderRadius: "8px", // Rounded corners
-                              fontFamily: '"Jost", sans-serif',
-                              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Shadow effect
-                              "& .MuiOutlinedInput-root": {
-                                "& fieldset": {
-                                  borderWidth: "2px", // Border width
-                                },
-                              },
-                            }}
+                        </Box>
+                      </div>
+                      <div>
+                        {" "}
+                        <Box
+                          boxShadow={3}
+                          bgcolor="background.paper"
+                          p={2}
+                          className="retro-box" // Add a class for retro style
+                          maxWidth="fit-content" // Set maximum width to fit the content
+                          margin="auto" // Center the box horizontally
+                          display="flex"
+                          flexDirection="column"
+                          alignItems="center" // Center the content vertically
+                        >
+                          <FileUploaddemo
+                            account={account}
+                            provider={provider}
+                            contract={contract}
+                            updateOutputText={updateOutputText}
                           />
                         </Box>
                       </div>
@@ -314,45 +323,21 @@ export const Maintenance = ({
                     alignItems="center" // Center the content vertically
                   >
                     <div>
-                      <h2>Choose your preference</h2>
-                      <p>Vote and engage with the DAO</p>
-                      <Box sx={{ minWidth: 275 }}>
-                        <Card variant="outlined">
-                          <VoteProposal lastId={proposal} signer={signer} />
-                        </Card>
-                      </Box>
-
+                      <h2>Vote on the maintenance submission</h2>
+                      <p>Submission despcription</p>
                       <Display
                         contract={contract}
                         account={account}
                         propDesc={proposalDescription}
                       ></Display>
+
+                      <Box sx={{ minWidth: 275 }}>
+                        <Card variant="outlined">
+                          <VoteProposal lastId={proposal} signer={signer} />
+                        </Card>
+                      </Box>
                     </div>
                   </Box>
-                  <div>
-                    <Box
-                      boxShadow={3}
-                      bgcolor="background.paper"
-                      p={2}
-                      className="retro-box" // Add a class for retro style
-                      maxWidth="fit-content" // Set maximum width to fit the content
-                      margin="auto" // Center the box horizontally
-                      display="flex"
-                      flexDirection="column"
-                      alignItems="center" // Center the content vertically
-                    >
-                      <p>AI-based Analysis </p>
-                      <Typography
-                        sx={{
-                          fontFamily: "Jost, sans-serif",
-                          textAlign: "justify",
-                          textJustify: "inter-word",
-                        }}
-                      >
-                        {outputText}
-                      </Typography>
-                    </Box>
-                  </div>
                 </div>
               )}
               {activeTab === 4 && (
@@ -369,37 +354,13 @@ export const Maintenance = ({
                     flexDirection="column"
                     alignItems="center" // Center the content vertically
                   >
-                    <FileUpload
+                    <FileUploaddemo
                       account={account}
                       provider={provider}
                       contract={contract}
                       updateOutputText={updateOutputText}
                     />
                   </Box>
-                  <div>
-                    <Box
-                      boxShadow={3}
-                      bgcolor="background.paper"
-                      p={2}
-                      className="retro-box" // Add a class for retro style
-                      maxWidth="fit-content" // Set maximum width to fit the content
-                      margin="auto" // Center the box horizontally
-                      display="flex"
-                      flexDirection="column"
-                      alignItems="center" // Center the content vertically
-                    >
-                      <p>AI-Generated Prompt</p>
-                      <Typography
-                        sx={{
-                          fontFamily: "Jost, sans-serif",
-                          textAlign: "justify",
-                          textJustify: "inter-word",
-                        }}
-                      >
-                        {outputText}
-                      </Typography>
-                    </Box>
-                  </div>
                 </div>
               )}
             </div>

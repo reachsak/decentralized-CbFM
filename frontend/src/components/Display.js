@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./Display.css";
 import "react-awesome-button/dist/styles.css";
+import Box from "@mui/material/Box";
 import {
   AwesomeButton,
   AwesomeButtonProgress,
@@ -10,29 +11,8 @@ import {
 const Display = ({ contract, account, propDesc }) => {
   const proposalDescription = propDesc || "Default Description";
   const [ImgHash, setImgHash] = useState(""); // State to store ImgHash
-  const [promptText, setPromptText] = useState("");
-  const [outputText, setOutputText] = useState("");
+
   const [data, setData] = useState("");
-  let request2 = "this is what the proposal say:";
-
-  let request =
-    "below is the proposal submit by the user alongside the images, please let me know if these are legit problems based on what they describe and the image upload, sometime they may lied to us the landlod, i want to you to think critically, whether i should agress or not";
-
-  const triggerAI = async () => {
-    try {
-      console.log(proposalDescription);
-      const response = await axios.post("http://localhost:3003/trigger-ai", {
-        imageUrl: ImgHash,
-        promptText: `${promptText}\n${request}\n${request2}\n${propDesc}`, // Include prompt text in the request
-      });
-      console.log(response.data);
-
-      setOutputText(response.data);
-      console.log("call success"); // Output: 'AI triggered successfully'
-    } catch (error) {
-      console.error("Error triggering AI:", error);
-    }
-  };
 
   const getdata = async (address) => {
     let dataArray;
@@ -43,6 +23,7 @@ const Display = ({ contract, account, propDesc }) => {
       } else {
         dataArray = await contract.display(account);
         console.log(dataArray);
+        console.log(proposalDescription);
       }
     } catch (e) {
       alert("You don't have access");
@@ -68,27 +49,23 @@ const Display = ({ contract, account, propDesc }) => {
 
   return (
     <>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter additional prompt"
-          value={promptText}
-          onChange={(e) => setPromptText(e.target.value)}
-          style={{
-            width: "250px",
-            height: "40px",
-            display: "block" /* Ensures input takes up full width */,
-            margin: "auto" /* Centers horizontally */,
-            textAlign: "center" /* Centers text horizontally */,
-          }}
-        />
-        <AwesomeButton type="twitter" onPress={triggerAI}>
-          Ask AI
-        </AwesomeButton>{" "}
-        {/* Call triggerAI directly */}
-        {outputText && <div className="output-box">{outputText}</div>}
+      <div className="description-box">
+        <Box
+          boxShadow={3}
+          bgcolor="background.paper"
+          p={2}
+          className="retro-box" // Add a class for retro style
+          maxWidth="fit-content" // Set maximum width to fit the content
+          margin="auto" // Center the box horizontally
+          display="flex"
+          flexDirection="column"
+          alignItems="center" // Center the content vertically
+        >
+          <p>{proposalDescription}</p>
+        </Box>
       </div>
       <div className="image-list">{data}</div>
+
       <AwesomeButton type="facebook" onPress={() => getdata()}>
         Get latest submission
       </AwesomeButton>
