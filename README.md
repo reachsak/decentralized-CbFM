@@ -66,3 +66,9 @@ npm run start
 Once started, the application should be available at http://localhost:3000/ (or the port specified in your project settings).
 
 
+
+## Digital twin visualization
+
+Please refer to this setup guide [Digital building twin setup guide](https://github.com/reachsak/digital-building-twin/blob/main/README.md)
+
+
