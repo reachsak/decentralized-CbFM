@@ -9,6 +9,7 @@ The system encourages building occupants and stakeholders to actively contribute
 
 <img src="/Fig5.jpg" style="float: left; margin-right: 20px; max-width: 200px;">
 <img src="study3.gif" style="display: block; margin-top: 10px; max-width: 200px;">
+<img src="dao.gif" style="display: block; margin-top: 10px; max-width: 200px;">
 
 ## Key Components
 
